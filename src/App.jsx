@@ -59,15 +59,15 @@ function App() {
     let list = [];
 
     for (let i = 0; i < 12; i++) {
-      if(localStorage.getItem(`card${i + 1}`)!==null){
-      let text1 = localStorage.getItem(`card${i + 1}`);
-      let obj1 = JSON.parse(text1);
-      let item = {
-        id: i + 1,
-       name: `${obj1['forms'][0]["name"]}`,
-        "front-image": `${obj1["sprites"]["front_default"]}`,
-      };
-      list.push(item);
+      if (localStorage.getItem(`card${i + 1}`) !== null) {
+        let text1 = localStorage.getItem(`card${i + 1}`);
+        let obj1 = JSON.parse(text1);
+        let item = {
+          "id": i + 1,
+          "name": `${obj1["forms"][0]["name"]}`,
+          "front-image": `${obj1["sprites"]["front_default"]}`,
+        };
+        list.push(item);
       }
     }
     return list;
