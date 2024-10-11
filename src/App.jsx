@@ -103,7 +103,7 @@ function App() {
           <br></br>
         </header>
         <section>
-          <Score score={score} setScore={setScore} bestScore={bestScore} />
+          <Score score={score} bestScore={bestScore} />
         </section>
       </div>
 

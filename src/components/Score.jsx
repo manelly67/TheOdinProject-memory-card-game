@@ -1,6 +1,5 @@
 function Score(props) {
 
-
   return (
     <>
       <p>SCORE: {props.score}</p>

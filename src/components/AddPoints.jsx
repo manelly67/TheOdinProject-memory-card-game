@@ -17,7 +17,7 @@ function AddPoints(arg1, arg2, arg3, arg4, arg5, arg6, arg7) {
       clearHistory(setClickHistory);
       break;
     case false:
-      tempScore = tempScore + 1;
+      ++tempScore;
       setScore(tempScore);
       saveHistory(itemSelected, clickHistory, setClickHistory);
       break;
@@ -32,14 +32,11 @@ function checkBestScore(score,bestScore, setBestScore) {
 }
 
 function saveHistory(itemSelected, clickHistory, setClickHistory) {
-  let tempHistory = [...clickHistory];
-  tempHistory.push(itemSelected);
-  setClickHistory(tempHistory);
+   setClickHistory([...clickHistory,itemSelected]);
 }
 
 function clearHistory(setClickHistory) {
-  let history = [];
-  setClickHistory(history);
+  setClickHistory([]);
 }
 
 export { AddPoints };
