@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import "./styles/App.css";
 import { CardsBoard } from "./components/CardsBoard";
 import { Score } from "./components/Score";
@@ -18,7 +18,23 @@ let card11 = "https://pokeapi.co/api/v2/pokemon/52/";
 let card12 = "https://pokeapi.co/api/v2/pokemon/25/";
 
 function App() {
-  const [arrayRandom, setArrayRandom] = useState([]);
+  let initialList = [
+    { id: 1, name: "", "front-image": "" },
+    { id: 2, name: "", "front-image": "" },
+    { id: 3, name: "", "front-image": "" },
+    { id: 4, name: "", "front-image": "" },
+    { id: 5, name: "", "front-image": "" },
+    { id: 6, name: "", "front-image": "" },
+    { id: 7, name: "", "front-image": "" },
+    { id: 8, name: "", "front-image": "" },
+    { id: 9, name: "", "front-image": "" },
+    { id: 10, name: "", "front-image": "" },
+    { id: 11, name: "", "front-image": "" },
+    { id: 12, name: "", "front-image": "" },
+  ];
+  const initialRandom = createArrayRandom();
+  const [itemsList, setItemsList] = useState(initialList);
+  const [arrayRandom, setArrayRandom] = useState(initialRandom);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [clickHistory, setClickHistory] = useState([]);
@@ -39,7 +55,7 @@ function App() {
       getData("card10", card10);
       getData("card11", card11);
       getData("card12", card12);
-    }
+      }
   }, []);
 
   async function getData(arg1, arg2) {
@@ -49,33 +65,26 @@ function App() {
       const cardData = await response.json();
       const myJSONCardData = JSON.stringify(cardData);
       localStorage.setItem(arg1, myJSONCardData);
+      let number = Number(arg1.slice(4));
+
+      let item = {
+        "id": number,
+        "name": `${cardData["forms"][0]["name"]}`,
+        "front-image": `${cardData["sprites"]["front_default"]}`,
+      };
+      let temp = [...itemsList];
+      temp.map((e)=> {
+        if(Number(e.id)===Number(item.id)){
+          e["name"]=item.name;
+          e["front-image"]=item["front-image"];
+        }
+      });  
+      setItemsList(temp);
+
     } catch (error) {
       alert("Something was wrong. try again later");
       console.log(error);
     }
-  }
-
-  const itemsList = useMemo(() => {
-    let list = [];
-
-    for (let i = 0; i < 12; i++) {
-      if (localStorage.getItem(`card${i + 1}`) !== null) {
-        let text1 = localStorage.getItem(`card${i + 1}`);
-        let obj1 = JSON.parse(text1);
-        let item = {
-          "id": i + 1,
-          "name": `${obj1["forms"][0]["name"]}`,
-          "front-image": `${obj1["sprites"]["front_default"]}`,
-        };
-        list.push(item);
-      }
-    }
-    return list;
-  }, []);
-
-  if (arrayRandom.length === 0) {
-    let array = createArrayRandom();
-    setArrayRandom(array);
   }
 
   function createArrayRandom() {
@@ -106,21 +115,19 @@ function App() {
           <Score score={score} bestScore={bestScore} />
         </section>
       </div>
-
-      <section>
-        <CardsBoard
-          itemsList={itemsList}
-          arrayRandom={arrayRandom}
-          setArrayRandom={setArrayRandom}
-          onRandom={() => createArrayRandom()}
-          score={score}
-          setScore={setScore}
-          bestScore={bestScore}
-          setBestScore={setBestScore}
-          clickHistory={clickHistory}
-          setClickHistory={setClickHistory}
-        />
-      </section>
+      <CardsBoard
+        itemsList={itemsList}
+        arrayRandom={arrayRandom}
+        setArrayRandom={setArrayRandom}
+        onRandom={() => createArrayRandom()}
+        score={score}
+        setScore={setScore}
+        bestScore={bestScore}
+        setBestScore={setBestScore}
+        clickHistory={clickHistory}
+        setClickHistory={setClickHistory}
+      />
+      <section></section>
     </>
   );
 }
