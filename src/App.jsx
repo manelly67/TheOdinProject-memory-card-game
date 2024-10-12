@@ -95,7 +95,7 @@ const initialList = () => {
             position: "fixed",
             backgroundColor: "white",
             right: "3rem",
-            top: "1.5rem",
+            top: "2rem",
           }}
         >
           <Score score={score} bestScore={bestScore} />
