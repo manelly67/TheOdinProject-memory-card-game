@@ -106,12 +106,12 @@ function App() {
         <header>
           <h1>Memory Card Game</h1>
           <p>
-            Get points by clicking on an image but don&apos;t click on any more
+            Get points by clicking on an image but don&apos;t click on any image more
             than once!
           </p>
           <br></br>
         </header>
-        <section
+        <section translate="no"
           style={{
             position: "fixed",
             backgroundColor: "white",
