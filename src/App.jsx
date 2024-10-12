@@ -111,7 +111,14 @@ function App() {
           </p>
           <br></br>
         </header>
-        <section>
+        <section
+          style={{
+            position: "fixed",
+            backgroundColor: "white",
+            right: "5px",
+            top: "5px",
+          }}
+        >
           <Score score={score} bestScore={bestScore} />
         </section>
       </div>

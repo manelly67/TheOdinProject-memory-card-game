@@ -7,7 +7,7 @@
 }
 
 #root {
-  --column1: calc(100vw);
+  --column1: calc(100%);
   --row1: 250px;
   padding-left: calc(var(--row1) * 0.02);
   display: grid;
@@ -16,7 +16,7 @@
 }
 
 #root > div > header {
-  margin-top: 2em;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -32,8 +32,8 @@
 .board {
   grid-row: 2/3;
   grid-column: 1/2;
-  width: 90%;
-  padding-left: calc(var(--row1) * 0.1);
+  width: 100%;
+  padding-left: calc(var(--column1) * 0.15);
 }
 
 ul {
@@ -74,11 +74,7 @@ ul {
 
 @media screen and (min-width: 621px) and (max-width: 980px) {
   .board {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-left: calc(var(--column1) * 0.12);
   }
 }
 
@@ -86,6 +82,7 @@ ul {
   .board {
     height: 100vh;
     width: 100vw;
+    padding-left: calc(var(--column1) * 0.07);
     display: flex;
     justify-content: center;
     align-items: center;
