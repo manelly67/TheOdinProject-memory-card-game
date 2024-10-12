@@ -40,7 +40,8 @@ function CardsBoard(props) {
                     <img
                       src={e["front-image"]}
                       width="110px"
-                      height="auto"
+                      height="110px"
+                      alt={`pokemon ${e["name"]}`}
                       style={{
                         backgroundColor: "lightblue",
                         alignItems: "center",
