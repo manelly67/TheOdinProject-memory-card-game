@@ -115,8 +115,8 @@ function App() {
           style={{
             position: "fixed",
             backgroundColor: "white",
-            right: "5px",
-            top: "5px",
+            right: "15px",
+            top: "15px",
           }}
         >
           <Score score={score} bestScore={bestScore} />
