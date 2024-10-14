@@ -29,9 +29,9 @@ const initialList = () => {
       // ✅ Only runs once per app load
       for (let i=0; i<urlAddresses.length; ++i){
         getData(`card${i+1}`, urlAddresses[i]);
-      };
+      }
     }
-  }, []);
+  });
 
   async function getData(arg1, arg2) {
    
@@ -39,7 +39,6 @@ const initialList = () => {
     try {
       const response = await fetch(arg2, { mode: "cors" });
       const cardData = await response.json();
-      const myJSONCardData = JSON.stringify(cardData);
       let number = Number(arg1.slice(4));
 
       let item = {
@@ -81,6 +80,9 @@ const initialList = () => {
 
   return (
     <>
+      <section translate="no" style={{position:"fixed",backgroundColor:"white",right:"3rem"}}>
+          <Score score={score} bestScore={bestScore} />
+        </section>
       <div>
         <header>
           <h1>Memory Card Game</h1>
@@ -90,17 +92,8 @@ const initialList = () => {
           </p>
           <br></br>
         </header>
-        <section translate="no"
-          style={{
-            position: "fixed",
-            backgroundColor: "white",
-            right: "3rem",
-            top: "2rem",
-          }}
-        >
-          <Score score={score} bestScore={bestScore} />
-        </section>
-      </div>
+        
+     
       <CardsBoard
         itemsList={itemsList}
         arrayRandom={arrayRandom}
@@ -113,7 +106,8 @@ const initialList = () => {
         clickHistory={clickHistory}
         setClickHistory={setClickHistory}
       />
-      <section></section>
+       </div>
+     
     </>
   );
 }

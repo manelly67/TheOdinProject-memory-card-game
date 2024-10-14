@@ -6,24 +6,25 @@
   text-align: center;
 }
 
-#root {
+#root > div {
   height: 100%;
   --column1: calc(100%);
-  --row1: 250px;
+  --row1: 200px;
   padding-left: calc(var(--row1) * 0.02);
   display: grid;
   grid-template-columns: var(--column1);
   grid-template-rows: var(--row1) 1fr;
+  text-align: center;
 }
 
 #root > div > header {
-  margin-top: 2.3rem;
+  margin-top: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-#root > div > section {
+#root > section {
   font-size: 1.2rem;
   display: flex;
   flex-direction: column;
@@ -64,6 +65,10 @@ ul {
 }
 
 @media screen and (max-width: 400px) {
+  #root {
+    margin-top: 100px;
+  }
+
   #root > div > header {
     max-width: 300px;
   }
@@ -73,7 +78,11 @@ ul {
   }
 }
 
-@media screen and (min-width: 621px) and (max-width: 980px) {
+@media screen and (min-width: 401px) and (max-width: 980px) {
+  #root {
+    margin-top: 80px;
+  }
+
   .board {
     padding-left: calc(var(--column1) * 0.12);
   }
