@@ -17,8 +17,8 @@ function CardsBoard(props) {
           {arrayToPrint.includes(undefined) ? (
             <>{null}</>
           ) : (
-            arrayToPrint.map((e) => {
-              return (
+            arrayToPrint.map((e) => (
+              <li key={`li${e.id}`}>
                 <button
                   key={e.id}
                   id={e.id}
@@ -50,8 +50,8 @@ function CardsBoard(props) {
                     <p>{e.name}</p>
                   </div>
                 </button>
-              );
-            })
+              </li>
+            ))
           )}
         </ul>
       </div>
