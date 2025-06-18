@@ -34,7 +34,6 @@ const initialList = () => {
   });
 
   async function getData(arg1, arg2) {
-   
     // arg1 is the card arg2 is the url for that card
     try {
       const response = await fetch(arg2, { mode: "cors" });
@@ -66,9 +65,7 @@ const initialList = () => {
     for (let i = 0; i < urlAddresses.length; ++i) {
       tempArray[i] = i + 1;
     }
-
     let newArray = [];
-
     for (let i = 0; i < urlAddresses.length; i++) {
       let number = Math.floor(Math.random() * (tempArray.length - 1 + 1) + 1);
       let char = tempArray.at(number - 1);
@@ -80,34 +77,36 @@ const initialList = () => {
 
   return (
     <>
-      <section translate="no" style={{position:"fixed",backgroundColor:"white",right:"3rem"}}>
-          <Score score={score} bestScore={bestScore} />
-        </section>
+      <section
+        translate="no"
+        className="scoreDiv"
+        style={{ position: "fixed", right: "3rem" }}
+      >
+        <Score score={score} bestScore={bestScore} />
+      </section>
       <div>
         <header>
           <h1>Memory Card Game</h1>
           <p>
-            Get points by clicking on an image but don&apos;t click on any image more
-            than once!
+            Get points by clicking on an image but don&apos;t click on any image
+            more than once!
           </p>
           <br></br>
         </header>
-        
-     
-      <CardsBoard
-        itemsList={itemsList}
-        arrayRandom={arrayRandom}
-        setArrayRandom={setArrayRandom}
-        onRandom={() => createArrayRandom()}
-        score={score}
-        setScore={setScore}
-        bestScore={bestScore}
-        setBestScore={setBestScore}
-        clickHistory={clickHistory}
-        setClickHistory={setClickHistory}
-      />
-       </div>
-     
+
+        <CardsBoard
+          itemsList={itemsList}
+          arrayRandom={arrayRandom}
+          setArrayRandom={setArrayRandom}
+          onRandom={() => createArrayRandom()}
+          score={score}
+          setScore={setScore}
+          bestScore={bestScore}
+          setBestScore={setBestScore}
+          clickHistory={clickHistory}
+          setClickHistory={setClickHistory}
+        />
+      </div>
     </>
   );
 }
